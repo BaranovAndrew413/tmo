@@ -62,6 +62,10 @@ dd /= n
 print('D: ', abs(d - dd)*100/d, '%')
 
 x0 = 0.5
+def F0(x0):
+       return 1 - np.exp(-l*x0)
+def Func(RO,r):
+       return 1
 F = 1 - np.exp(-l*x0)
 mu = 0
 for i in y:
@@ -72,3 +76,14 @@ print('F: ', abs(F - FF), '%')
 plt.plot(tau, [0]*(n+1), 'o-')
 plt.show()
 
+p=[]
+r=m-1
+R0=0
+for i in range(len(leny)):
+       p.append(F0(leny[i+1])-F0(leny[i]))
+
+for i in range(m):
+       R0+=((lenx[i]-m*p[i])/(m*p[i]))
+
+a=input('Введите параметр Альфа:')#параметр альфа для отвержения гипотез
+chi2.ppf(a-1,r)
